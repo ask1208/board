@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $fullable = [
-        'user_id','post_id','comment'
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'post_id', 'comment'
     ];
 
     // public function user(){
