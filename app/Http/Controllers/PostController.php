@@ -15,10 +15,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        $posts->load('category');
+        $posts->load('category','user');
         // dd($posts);
-
-
         return view('posts.index',[
             'posts' => $posts,
         ]);
