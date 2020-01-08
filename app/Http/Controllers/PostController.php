@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PostReuest;
 use App\Post;
 
 class PostController extends Controller
@@ -29,7 +30,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create',[
+            
+        ]);
     }
 
     /**
@@ -38,9 +41,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostReuest $request)
     {
-        //
+        $post = new Post;
+            // $input = $request->only($post->getFillable());
+        
+        $post = $post->create($input);
+
+        return redirect('/');
     }
 
     /**
