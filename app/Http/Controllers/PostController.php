@@ -26,7 +26,12 @@ class PostController extends Controller
         ]);
 
         }else{
-
+            $posts = Post::latest()->get();
+            $posts->load('category','user');
+            // dd($posts);
+            return view('posts.index',[
+                'posts' => $posts,
+            ]);
         }
         
     }
