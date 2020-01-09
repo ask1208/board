@@ -15,12 +15,20 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        $posts->load('category','user');
-        // dd($posts);
-        return view('posts.index',[
-            'posts' => $posts,
+        $q =\Request::query();
+
+        if(isset($q['category_id'])){
+            $posts = Post::latest()->where('category_id', $q['category_id'])->get();
+            $posts->load('category','user');
+            // dd($posts);
+            return view('posts.index',[
+                'posts' => $posts,
         ]);
+
+        }else{
+
+        }
+        
     }
 
     /**
