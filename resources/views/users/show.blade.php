@@ -9,7 +9,7 @@
           </div>
       @endif
 
-      @foreach($posts as $post)
+      @foreach($user->posts as $post)
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{ $post->title }}</h5>

@@ -46,7 +46,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        dd($user);
+        $user->load('posts');
+        // dd($user);
         return view('users.show',[
             'user' => $user,
         ]);
