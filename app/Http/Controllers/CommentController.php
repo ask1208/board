@@ -45,7 +45,7 @@ class CommentController extends Controller
     
         $comment = $comment->create($input);
 
-        return redirect('/');
+        return redirect('/posts/'.$comment->post_id);
     }
 
     /**
