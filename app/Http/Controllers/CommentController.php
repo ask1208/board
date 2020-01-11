@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Http\Requests\CommentRequest;
 
-class UserController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +23,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+            $q =\Request::query();
+            // dd($q['post_id']);
+            return view('comments.create',[
+            'post_id' => $q['post_id'],
+        ]);
     }
 
     /**
@@ -34,7 +36,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CommentRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -45,13 +47,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        $user->load('posts');
-        // dd($user);
-        return view('users.show',[
-            'user' => $user,
-        ]);
+        //
     }
 
     /**

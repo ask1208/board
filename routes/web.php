@@ -21,3 +21,4 @@ Auth::routes();
 Route::get('/', 'PostController@index')->name('posts.index');
 Route::resource('/posts', 'PostController', ['except'=>['index']]);
 Route::resource('/users', 'UserController');
+Route::resource('/comments', 'CommentController')->middleware('auth');

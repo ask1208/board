@@ -19,8 +19,17 @@
               投稿者：{{ $post->user->name }}
             </h5>
             <p class="card-text">{{ $post->content }}</p>
-            <!-- <a href="{{ route('posts.show',$post->id )}}" class="btn btn-primary">詳細</a> -->
+          
           </div>
-        </div>    
+        </div>   
+
+        <div class="p-3">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-text">{{ $post->content }}</p>
+              </div>
+            </div> 
+            <a href="{{ route('comments.create',['post_id' =>$post->id])}}" class="btn btn-primary">コメントする</a>
+        </div> 
   </div>
 @endsection
