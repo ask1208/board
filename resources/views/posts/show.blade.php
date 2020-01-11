@@ -31,7 +31,9 @@
                 <p class="card-text">{{ $comment->comment }}</p>
                 <p class="card-text">
                 投稿者:
-                
+                <a href="{{ route('users.show',$comment->user->id) }}">
+              {{ $comment->user->name }}
+              </a>
               </div>
             @endforeach
             </div> 
