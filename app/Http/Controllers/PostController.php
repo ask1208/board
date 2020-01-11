@@ -18,7 +18,7 @@ class PostController extends Controller
         $q =\Request::query();
 
         if(isset($q['category_id'])){
-            $posts = Post::latest()->where('category_id', $q['category_id'])->get();
+            $posts = Post::latest()->where('category_id', $q['category_id'])->paginate(5);
             $posts->load('category','user');
             // dd($posts);
             return view('posts.index',[
@@ -26,7 +26,7 @@ class PostController extends Controller
         ]);
 
         }else{
-            $posts = Post::latest()->get();
+            $posts = Post::latest()->paginate(5);
             $posts->load('category','user');
             // dd($posts);
             return view('posts.index',[
