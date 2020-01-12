@@ -24,6 +24,9 @@
   </div>
 </div>  
 <div class="card-header">board</div>
+  @isset($search_result)
+    <h5 class="card-title">{{ $search_result }}</h5>
+  @endisset
   <div class="card-body">
       @if (session('status'))
           <div class="alert alert-success" role="alert">
