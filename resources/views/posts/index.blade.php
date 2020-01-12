@@ -8,9 +8,9 @@
           <h5 class="card-title">検索</h5>
               <div id="custom-search-input">
                   <div class="input-group col-md-12">
-                    <form action="{{ route('posts.search')}}" method="POST">
+                    <form action="{{ route('posts.search')}}" method="get">
                       {{ csrf_field() }}
-                      <input type="text" class="form-control input-lg" placeholder="Buscar" / name="search">
+                      <input type="text" class="form-control input-lg" placeholder="Buscar" name="search">
                       <span class="input-group-btn">
                           <button class="btn btn-info " type="submit" style="position: relative;top: -37px;left: 180px;">
                           <i class="fas fa-search"></i>
@@ -57,9 +57,11 @@
       @endforeach
 
       @if(isset($category_id))
-        {{ $posts->appends(['category_id' => '$category_id'])->links() }}
-      @else
-        {{ $posts->links() }}
+          {{ $posts->appends(['category_id' => '$category_id'])->links() }}
+      @elseif(isset($search_query))
+          {{ $posts->appends(['search' => $search_query])->links() }}
+      @else()
+          {{ $posts->links() }}
       @endif
   </div>
 @endsection
