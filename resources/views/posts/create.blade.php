@@ -22,12 +22,16 @@
             @endif
 
           
-      <form action="{{ route('posts.store') }}" method="POST" >
+      <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data" >
                 {{ csrf_field() }}
 
               <div class="form-group">
                 <label for="exampleInputEmail1">タイトル</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" placeholder="タイトル" name="title">
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlFile1">ファイル</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
               </div>
 
                <div class="form-group">

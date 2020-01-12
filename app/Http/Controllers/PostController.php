@@ -57,6 +57,7 @@ class PostController extends Controller
      */
     public function store(PostReuest $request)
     {
+        dd($request);
         $post = new Post;
             $input = $request->only($post->getFillable());
         
