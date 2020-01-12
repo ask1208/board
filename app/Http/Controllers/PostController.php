@@ -23,6 +23,7 @@ class PostController extends Controller
             // dd($posts);
             return view('posts.index',[
                 'posts' => $posts,
+                'category_id' => $q['category_id'],
         ]);
 
         }else{
@@ -118,7 +119,7 @@ class PostController extends Controller
         $posts = Post::where('title','like',"%{$request->search}%")
         ->orWhere('content','like',"%{$request->search}%")
         ->paginate(5);
-        $search_result = $request->search.'の検索結果'.count($posts).'件';
+        $search_result = $request->search.'の検索結果'.$posts->total().'件';
         return view('posts.index',[
             'posts' => $posts,
             'search_result' => $search_result,
