@@ -57,11 +57,26 @@ class PostController extends Controller
      */
     public function store(PostReuest $request)
     {
-        dd($request);
-        $post = new Post;
-            $input = $request->only($post->getFillable());
+        // dd($request->file('image'));
+        if($request->file('image')->isValid()){
+            $post = new Post;
+            
+            $post->user_id = $request->user_id;
+            $post->category_id = $request->category_id;
+            $post->content = $request->content;
+            $post->title = $request->title;
+
+            $filename = $request->file('image')->store('public/image');
+
+            $post->image = basename($filename);
+            // if(!isset($input['image'])){
+            //     array_set($input,'image',basename($filenme));
+            // }
+ 
+            $post->save();
+
+        }
         
-        $post = $post->create($input);
 
         return redirect('/');
     }
