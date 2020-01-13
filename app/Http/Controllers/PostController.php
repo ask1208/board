@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostReuest;
 use App\Post;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -73,8 +74,25 @@ class PostController extends Controller
             // contentからtagを抽出
             preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠]+)/u', $request->content, $match);
             
-            dd($match[1]);
+            // dd($match[1]);
+            $tags =[];
+            foreach($match[1] as $tag) {
+                $found = Tag::firstOrCreate(['tag_name' => $tag]);
+                // firstOrCreateはタグが被らないか判断してくれる
+
+                array_push($tags,$found);
+            }
+
+            $tag_ids =[];
+            foreach($tags as $tag) {
+
+                array_push($tag_ids,$tag['id']);
+            }
+
+            // dd($tag_ids);
+
             $post->save();
+            $post->tags()->attach($tag_ids);
 
         }
         
