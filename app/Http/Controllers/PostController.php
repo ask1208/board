@@ -69,10 +69,11 @@ class PostController extends Controller
             $filename = $request->file('image')->store('public/image');
 
             $post->image = basename($filename);
-            // if(!isset($input['image'])){
-            //     array_set($input,'image',basename($filenme));
-            // }
- 
+           
+            // contentからtagを抽出
+            preg_match_all('/#([a-zA-Z0-9０-９ぁ-んァ-ヶー一-龠]+)/u', $request->content, $match);
+            
+            dd($match[1]);
             $post->save();
 
         }
