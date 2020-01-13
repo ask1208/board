@@ -68,7 +68,7 @@
 
       @if(isset($category_id))
           {{ $posts->appends(['category_id' => '$category_id'])->links() }}
-      @if(isset($tag_name))
+      @elseif(isset($tag_name))
       {{ $posts->appends(['tag_name' => '$tag_name'])->links() }}
       @elseif(isset($search_query))
           {{ $posts->appends(['search' => $search_query])->links() }}
